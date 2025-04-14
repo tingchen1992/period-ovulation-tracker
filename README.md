@@ -10,24 +10,24 @@
 - **Flask**：用於後端處理。
 - **HTML / CSS**：用於前端頁面呈現。
 - **Python**：用於日期計算與邏輯處理。
-- **Bootstrap**（可選）：可以進行視覺化優化。
+- **Bootstrap**：可以進行視覺化優化。
 
 ## 使用方法
 
 1. 複製這個倉庫：
-   ```bash
-   git clone https://github.com/tingchen1992/period-ovulation-calendar.git
+   
+   git clone `https://github.com/tingchen1992/period-ovulation-calendar.git`
 
 2. 進入專案資料夾：
-cd period-ovulation-calendar
+`cd period-ovulation-calendar`
 
 3. 安裝必要的 Python 套件：
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 4. 啟動應用程式：
-python app.py
+`python app.py`
 
-5. 打開瀏覽器並訪問 http://127.0.0.1:5000/
+5. 打開瀏覽器並訪問 `http://127.0.0.1:5000/`
 
 ## 功能說明
 ### 月經與排卵期計算
