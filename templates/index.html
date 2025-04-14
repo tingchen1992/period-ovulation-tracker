@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>排卵期與月經日計算器</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Quicksand', 'Noto Sans TC', sans-serif;
+      background-color: #fff8dc;
+      color: #444;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #d2691e;
+      font-size: 2.4em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin: 20px auto;
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 204, 102, 0.4);
+      display: inline-block;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    input, select {
+      padding: 10px;
+      margin-top: 6px;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #f4c542;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      transition: 0.3s;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #f39c12;
+      box-shadow: 0 0 10px rgba(255, 204, 102, 0.6);
+    }
+
+    .results {
+      margin-top: 30px;
+      background-color: #fff6d1;
+      border-radius: 20px;
+      padding: 20px;
+      display: inline-block;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 15px rgba(255, 204, 102, 0.3);
+      text-align: left;
+      min-height: 150px;
+    }
+
+    .results p {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+      line-height: 1.6em;
+    }
+
+    .highlight {
+      background-color: #ffd580;
+      border-radius: 12px;
+      padding: 5px 10px;
+      color: #b45f06;
+      font-weight: bold;
+    }
+
+    .education-box {
+      margin-top: 15px;
+      background-color: #f9f1c5;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(255, 204, 102, 0.4);
+      font-size: 1.1em;
+      color: #7f5300;
+      text-align: left;
+      display: inline-block;
+      max-width: 400px;
+      width: 90%;
+      min-height: 150px;
+    }
+
+    .education-box h3 {
+      color: #d2691e;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.7em;
+      }
+
+      input, button {
+        font-size: 0.9em;
+      }
+
+      .results {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    💖 排卵期 & 月經日查詢 🌸
+  </h1>
+
+  <form method="post">
+    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+
+      <label>
+        上次月經開始日期：<br>
+        <input type="date" name="start_date" required style="width: 250px;">
+      </label>
+
+      <label>
+        週期長度（天）：<br>
+        <input type="number" name="cycle_length" value="28" required style="width: 250px;">
+      </label>
+
+      <label>
+        月經持續天數：<br>
+        <input type="number" name="period_days" value="5" required style="width: 250px;">
+      </label>
+
+      <button type="submit">✨ 計算 ✨</button>
+    </div>
+  </form>
+
+  {% if result %}
+    <div class="results">
+      <p>📅 <strong>預計下次月經日：</strong><br>
+        <span class="highlight">{{ result.next_period }}</span></p>
+
+      <p>🥚 <strong>排卵期預計：</strong><br>
+        <span class="highlight">{{ result.ovulation_start }}</span> ～ 
+        <span class="highlight">{{ result.ovulation_end }}</span></p>
+    </div>
+
+    <!-- 衛教小知識框框 -->
+    <div class="education-box">
+      <h3>衛教小知識：</h3>
+      <p>
+        排卵期通常是指<strong>排卵日前約 4 天至排卵日後 1 天</strong>這段時間，
+        共約 5～6 天左右。因個人體質與週期長度不同，排卵期的實際時間可能略有差異，
+        所以此範圍僅供參考，屬於常見估算方式。
+      </p>
+    </div>
+  {% endif %}
+
+</body>
+</html>
