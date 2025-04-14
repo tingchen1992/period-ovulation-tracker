@@ -2,11 +2,8 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>排卵期與月經日計算器</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Quicksand:wght@500&display=swap" rel="stylesheet">
-
+  <title>🩷 月經與排卵日曆計算器</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Quicksand', 'Noto Sans TC', sans-serif;
@@ -33,13 +30,14 @@
       max-width: 400px;
     }
 
-    input, select {
+    input {
       padding: 10px;
       margin-top: 6px;
       width: 100%;
       border-radius: 12px;
       border: 1px solid #ccc;
       font-size: 1em;
+      box-sizing: border-box;
     }
 
     button {
@@ -59,6 +57,35 @@
     button:hover {
       background-color: #f39c12;
       box-shadow: 0 0 10px rgba(255, 204, 102, 0.6);
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 0 auto 20px auto;
+    }
+
+    td, th {
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+    }
+
+    .ovulation {
+      background-color: #ffcc99;
+      font-weight: bold;
+      color: #8b4513;
+    }
+
+    .period {
+      background-color: #f08080;
+      font-weight: bold;
+      color: white;
+    }
+
+    .other-month {
+      color: #aaa;
     }
 
     .results {
@@ -125,44 +152,62 @@
   </style>
 </head>
 <body>
+  <h1>🌼 排卵與月經日計算器 🩷</h1>
 
-  <h1>
-    💖 排卵期 & 月經日查詢 🌸
-  </h1>
-
-  <form method="post">
-    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-
-      <label>
-        上次月經開始日期：<br>
-        <input type="date" name="start_date" required style="width: 250px;">
-      </label>
-
-      <label>
-        週期長度（天）：<br>
-        <input type="number" name="cycle_length" value="28" required style="width: 250px;">
-      </label>
-
-      <label>
-        月經持續天數：<br>
-        <input type="number" name="period_days" value="5" required style="width: 250px;">
-      </label>
-
-      <button type="submit">✨ 計算 ✨</button>
-    </div>
+  <form method="POST">
+    <label>上次月經開始日期：
+      <input type="date" name="start_date" required>
+    </label><br><br>
+    <label>平均週期天數：
+      <input type="number" name="cycle_length" value="28" required>
+    </label><br><br>
+    <label>月經天數：
+      <input type="number" name="period_days" value="5" required>
+    </label><br><br>
+    <button type="submit">✨ 計算 ✨</button>
   </form>
 
   {% if result %}
     <div class="results">
-      <p>📅 <strong>預計下次月經日：</strong><br>
-        <span class="highlight">{{ result.next_period }}</span></p>
-
-      <p>🥚 <strong>排卵期預計：</strong><br>
-        <span class="highlight">{{ result.ovulation_start }}</span> ～ 
-        <span class="highlight">{{ result.ovulation_end }}</span></p>
+      <p>預計下次月經開始的日期：
+        <span class="highlight">{{ result.next_period.strftime('%Y-%m-%d') }}</span>
+      </p>
+      <p>排卵期預計：
+        <span class="highlight">{{ result.ovulation_start.strftime('%Y-%m-%d') }}</span> ～ 
+        <span class="highlight">{{ result.ovulation_end.strftime('%Y-%m-%d') }}</span>
+      </p>
     </div>
 
-    <!-- 衛教小知識框框 -->
+    <h3>🗓️ {{ result.ovulation_start.strftime('%B %Y') }}</h3>
+    <table>
+      <tr>
+        <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
+      </tr>
+      {% for week in calendar1 %}
+        <tr>
+          {% for day, cls in week %}
+            <td class="{{ cls }}">{{ day.day }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+
+    {% if result.next_period.month != result.ovulation_start.month %}
+      <h3>🗓️ {{ result.next_period.strftime('%B %Y') }}</h3>
+      <table>
+        <tr>
+          <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
+        </tr>
+        {% for week in calendar2 %}
+          <tr>
+            {% for day, cls in week %}
+              <td class="{{ cls }}">{{ day.day }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
     <div class="education-box">
       <h3>衛教小知識：</h3>
       <p>
@@ -172,6 +217,5 @@
       </p>
     </div>
   {% endif %}
-
 </body>
 </html>
