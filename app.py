@@ -21,7 +21,6 @@ def calculate_period(start_date, cycle_length, period_days):
 
 
 def get_calendar_with_highlight(year, month, highlights):
-    # 🟡 改成星期日為一週的第一天（跟前端對齊）
     cal = calendar.Calendar(firstweekday=6)
     month_days = cal.itermonthdates(year, month)
     calendar_matrix = []
@@ -55,16 +54,13 @@ def index():
 
         result = calculate_period(start_date, cycle_length, period_days)
 
-        # 用 dictionary 標記日期：{date: "ovulation" 或 "period"}
         highlights = {}
 
-        # 標記排卵期
         current = result["ovulation_start"]
         while current <= result["ovulation_end"]:
             highlights[current.date()] = "ovulation"
             current += timedelta(days=1)
 
-        # 標記月經期
         for i in range(result["period_days"]):
             period_date = result["next_period"] + timedelta(days=i)
             highlights[period_date.date()] = "period"
