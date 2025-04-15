@@ -6,6 +6,18 @@
 - 根據使用者輸入的資料，計算出下次月經的開始日期及排卵期。
 - 顯示當月及下月的日曆，並以不同顏色標註顯示排卵期與月經期間。
 
+## 使用畫面示意
+
+### 🔽 使用者輸入資料介面
+![輸入介面](https://raw.githubusercontent.com/tingchen1992/period-ovulation-calendar/main/screenshots/input.png)
+
+### 📅 計算結果展示
+![結果展示](https://raw.githubusercontent.com/tingchen1992/period-ovulation-calendar/main/screenshots/result.png)
+
+### 📆 日曆顯示月經與排卵期
+![日曆畫面](https://raw.githubusercontent.com/tingchen1992/period-ovulation-calendar/main/screenshots/calendar.png)
+
+
 ## 技術堆疊
 - **Flask**：用於後端處理。
 - **HTML / CSS**：用於前端頁面呈現。
@@ -30,9 +42,10 @@
 5. 打開瀏覽器並訪問 `http://127.0.0.1:5000/`
 
 ## 功能說明
-### 月經與排卵期計算
-1. 使用者輸入上次月經開始日期、平均週期天數與月經天數，應用程式將計算下次月經的開始日期與排卵期的範圍。
-2. 使用者可以根據需要查看排卵期與月經日期在日曆上的標註顯示。
+### 月經與排卵期計算邏輯
+1. 使用者輸入上次月經開始日期、平均週期天數與月經天數。
+2. 應用程式會計算下次月經的開始日期與排卵期的範圍。
+3. 結果會以文字與日曆形式呈現。
 
 
 
