@@ -8,14 +8,17 @@
 
 ## 使用畫面示意
 
-### 🔽 使用者輸入資料介面
-![輸入介面](https://raw.githubusercontent.com/tingchen1992/period-ovulation-calendar/main/screenshots/input.png)
+## 畫面預覽
 
-### 📅 計算結果展示
-![結果展示](https://raw.githubusercontent.com/tingchen1992/period-ovulation-calendar/main/screenshots/result.png)
+### 🔸 使用者輸入畫面
+![使用者輸入畫面](input.png)
 
-### 📆 日曆顯示月經與排卵期
-![日曆畫面](https://raw.githubusercontent.com/tingchen1992/period-ovulation-calendar/main/screenshots/calendar.png)
+### 🔸 計算結果畫面
+![預測結果畫面](result.png)
+
+### 🔸 排卵期與月經顯示的日曆
+![日曆畫面](calendar.png)
+
 
 
 ## 技術堆疊
